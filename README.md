@@ -23,6 +23,19 @@ AI Coding 地基用于初始化一个项目的治理舱。
 它会创建原则、状态、日志、检查项和建议区，让后续 PRD、Spec 和实现工作有稳定上下文。
 ```
 
+## 🧭 PM 工作流系列
+
+这一组 Skills 用来把产品想法逐步推进到 AI Coding 可执行状态。推荐顺序是：地基 → PRD → Spec → 原型。
+
+| 顺序 | Skill | 作用 |
+|---|---|---|
+| 1 | [AI Coding 地基](https://github.com/FinnCheung93/aicoding-foundation) | 项目开工前，初始化原则、状态、日志和协作治理 |
+| 2 | [PM PRD 助手](https://github.com/FinnCheung93/pm-prd-copilot) | 澄清、撰写、修订和审查开发可落地的 PRD |
+| 3 | [AI Coding 规范文档](https://github.com/FinnCheung93/aicoding-specpilot) | 基于 PRD 生成更适合 AI Coding 读取的规格文档 |
+| 4 | [PM 原型助手](https://github.com/FinnCheung93/finn-protopilot) | 基于 PRD / Spec 生成产品走查原型和演示材料 |
+
+<sub>也可以单独调用其中任意一个 Skill，不一定必须按完整链路使用。</sub>
+
 ## ✨ 它能帮你做什么
 
 - 建立项目开工前的协作规则和工作边界
@@ -54,17 +67,6 @@ AI Coding 地基用于初始化一个项目的治理舱。
 - 不在用户只想讨论时直接写文件
 - 不覆盖已有治理内容，除非明确需要更新
 - 不把项目治理变成沉重流程
-
-## 🧭 PM 工作流系列
-
-这一组 Skills 用来把产品想法逐步推进到 AI Coding 可执行状态：
-
-- [AI Coding 地基](https://github.com/FinnCheung93/aicoding-foundation)：项目开工前，初始化原则、状态、日志和协作治理。
-- [PM PRD 助手](https://github.com/FinnCheung93/pm-prd-copilot)：澄清、撰写、修订和审查开发可落地的 PRD。
-- [AI Coding 规范文档](https://github.com/FinnCheung93/aicoding-specpilot)：基于 PRD 生成更适合 AI Coding 读取的规格文档。
-- [PM 原型助手](https://github.com/FinnCheung93/finn-protopilot)：基于 PRD / Spec 生成产品走查原型和演示材料。
-
-推荐顺序：地基 → PRD → Spec → 原型。实际使用时也可以单独调用其中任意一个 Skill。
 
 ## 📦 使用方式
 
