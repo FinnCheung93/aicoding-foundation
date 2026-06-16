@@ -11,8 +11,8 @@ description: >-
   foundation is useful, analyze only and do not write files.
 metadata:
   short-description: Initialize AI Coding project governance
-  version: v1.2.0
-  updated: 2026-06-10
+  version: v1.3.0
+  updated: 2026-06-16
 ---
 
 # AI Coding Foundation
@@ -143,6 +143,7 @@ python scripts/init_foundation.py <target_dir> --project-name <name> --language 
 - `.foundation/README.md` 包含文件职责和唯一记忆路由表，路由按信息性质表达，不写成机械 if-else。
 - `.foundation/PRINCIPLES.md` 只包含长期原则、禁区和取舍依据，不写状态/日志更新步骤。
 - `.foundation/STATE.md` 使用“最近接续点”，最多保留 3-5 条恢复需要的信息。
+- `.foundation/STATE.md` 包含“治理脉冲”，以 3 轮重要工作为阈值触发治理复盘；`STATE.md` 通过修订保持当前快照，不追加成历史流水。
 - `.foundation/LOG.md` 记录已发生的重要事件、决策、变更、事故、验收和复盘。
 - `.foundation/CHECKS.md` 只做检查表，不重新定义文件职责或记忆路由。
 - `.foundation/CHECKS.md` 包含治理钩子检查、长期原则误投扫描、自进化运行检查和发布一致性检查。
@@ -217,5 +218,6 @@ python scripts/init_foundation.py <target_dir> --project-name <name> --language 
 - 7 个生成物符合职责契约，按信息性质路由，未出现明显重复承载。
 - `PRINCIPLES.md` 区分裁决清晰的长期约束和未裁决治理建议。
 - `STATE.md` 没有生成详细项目计划或历史流水。
+- `STATE.md` 包含治理脉冲，且最近接续点保持 3-5 条当前恢复信息。
 - `SUGGESTIONS.md` 是待裁决治理提案队列。
 - 若存在冲突，未覆盖任何已有文件。

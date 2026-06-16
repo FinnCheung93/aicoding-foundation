@@ -27,6 +27,8 @@
 - 已确认重要事件、决策、事故、验收或复盘记录在 `LOG.md`。
 - 已确认 AI 自发发现但尚未裁决的治理建议进入 `SUGGESTIONS.md`。
 - 已快速查看 `SUGGESTIONS.md` 中待确认提案；若影响本轮工作，已请求裁决或处理状态。
+- 已检查本轮是否出现合格治理信号；若出现，已更新 `STATE.md` 的治理脉冲。
+- 若治理脉冲达到 3 / 3，已在自然停顿点完成轻量复盘，或记录待复盘信号且未开启新阶段。
 - 已确认记录位置符合 `.foundation/README.md` 的唯一记忆路由。
 - 已检查本轮是否暴露治理文件职责、触发条件或检查项需要演进；未裁决时进入 `SUGGESTIONS.md`。
 
@@ -45,6 +47,7 @@
 - `.foundation/README.md` 是唯一文件职责与记忆路由权威。
 - `.foundation/PRINCIPLES.md` 只包含长期原则、禁区和取舍依据。
 - `.foundation/STATE.md` 聚焦当前恢复所需状态、工作焦点、阻塞和接续点。
+- `.foundation/STATE.md` 通过修订保持当前快照，最近接续点只保留 3-5 条，并维护治理脉冲。
 - `.foundation/LOG.md` 聚焦重要事件、决策、变更、事故、验收和复盘。
 - `.foundation/CHECKS.md` 只做检查表，不重新定义路由。
 - `.foundation/SUGGESTIONS.md` 只记录未裁决治理提案。
