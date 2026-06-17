@@ -9,12 +9,7 @@
 
 <br>
 
-<p>
-  <img src="https://img.shields.io/static/v1?label=Codex&message=Skill&color=2563eb&style=flat" />
-  <img src="https://img.shields.io/static/v1?label=Version&message=v1.4.1&color=14b8a6&style=flat" />
-  <img src="https://img.shields.io/static/v1?label=Language&message=%E4%B8%AD%E6%96%87&color=f59e0b&style=flat" />
-  <img src="https://img.shields.io/static/v1?label=Mode&message=Governance&color=7c3aed&style=flat" />
-</p>
+<p><kbd>Codex Skill</kbd> <kbd>Version v1.4.1</kbd> <kbd>Language 中文</kbd> <kbd>Mode Governance</kbd></p>
 
 </div>
 
