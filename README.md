@@ -5,25 +5,25 @@
 在项目开工前，把协作原则、状态记录和治理结构先立起来。  
 适合用作 agent 参与项目的开工前治理 Skill，也可检查和增量同步已有治理地基。
 
-<sub>Governance · Principles · State · Handoff</sub>
+<sub>Governance · Principles · State · Continuation</sub>
 
 <br>
 
-<p><kbd>Codex Skill</kbd> <kbd>Version v1.7.0</kbd> <kbd>Language 中文</kbd> <kbd>Mode Governance</kbd></p>
+<p><kbd>Codex Skill</kbd> <kbd>Version v1.8.0</kbd> <kbd>Language 中文</kbd> <kbd>Mode Governance</kbd></p>
 
 </div>
 
 ```text
-Agentic Foundation 用于初始化或维护项目的治理舱。
-它会建立原则、状态、日志、检查项和未裁决提案队列，让后续 agent 工作有稳定上下文和自进化入口。
+Agentic Foundation 用于初始化或维护项目治理文件结构。
+它会建立原则、状态、日志和未裁决提案队列，让后续 agent 工作有稳定上下文和自进化入口。
 ```
 
 ## ✨ 它能帮你做什么
 
 - 建立项目开工前的协作规则和工作边界
-- 记录项目原则、当前状态、变更日志和检查项
+- 记录项目原则、当前状态、重要历史和未裁决治理提案
 - 给 agent 参与的项目提供长期可读的上下文
-- 让治理文件在工作中持续触发记录、检查、复盘和提案
+- 让治理文件在工作中持续触发记录、复盘和提案
 - 检查已有治理地基版本，并在授权后做增量同步
 
 ## 🧭 适用场景
@@ -49,6 +49,7 @@ Agentic Foundation 用于初始化或维护项目的治理舱。
 - 不负责写 PRD、Spec、架构设计或实现计划
 - 不在用户只想讨论时直接写文件
 - 不整文件覆盖已有治理内容；旧项目同步只做增量修订
+- 不默认提供 QA、测试矩阵、发布检查或验收 checklist
 - 不把项目治理变成沉重流程
 
 ## 📦 使用方式

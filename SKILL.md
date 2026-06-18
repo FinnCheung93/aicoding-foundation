@@ -4,20 +4,20 @@ description: >-
   Initialize a lightweight governance foundation for agentic projects, or review and incrementally
   sync an existing foundation to the current governance capability. Use when the user has chosen a
   project folder and wants AGENTS.md plus a .foundation/ governance cockpit with project principles,
-  state, log, checks, and human-reviewed suggestions. Also use for Chinese requests like 项目初始化,
+  state, log, and human-reviewed suggestions. Also use for Chinese requests like 项目初始化,
   打地基, 治理舱, agent 工作灯塔, 开工前结构, agentic foundation, 检查 foundation 版本, 同步治理地基, or 升级 foundation.
   Do not use for PRD writing, SDD Specs generation, project planning, task breakdown, engineering
-  architecture, or direct implementation. If the user is only discussing whether a governance
-  foundation is useful, analyze only and do not write files.
+  architecture, QA, release checks, acceptance checklists, or direct implementation. If the user is
+  only discussing whether a governance foundation is useful, analyze only and do not write files.
 metadata:
   short-description: Initialize agentic project governance
-  version: v1.7.0
+  version: v1.8.0
   updated: 2026-06-18
 ---
 
 # Agentic Foundation
 
-这个 skill 用于在 agent 参与的项目开工前初始化一套轻量治理地基：根目录 `AGENTS.md` + `.foundation/`。它让后续 agent 工作有入口协议、长期原则、当前状态、历史日志、检查清单和未裁决治理提案。
+这个 skill 用于在 agent 参与的项目开工前初始化一套轻量治理地基：根目录 `AGENTS.md` + `.foundation/`。它让后续 agent 工作有入口、长期原则、当前状态、历史记录和未裁决治理提案。
 
 ## 适用场景
 
@@ -26,12 +26,13 @@ metadata:
 - 用户刚创建或选定一个新项目目录，希望初始化 agent 协作工作地基。
 - 用户说“项目初始化 / 打地基 / 初始化项目地基 / 治理舱 / agent 工作灯塔 / agent 工作规则 / 开工前结构 / Agentic Foundation”。
 - 用户需要一个跨会话续航和自进化机制，而不是只依赖当前对话上下文。
+- 用户要求检查、同步或升级已有 `.foundation/` 治理地基。
 
 不适用：
 
-- 写 PRD、修改 PRD、评审 PRD：交给 `pm-prd-copilot`。
-- 生成或重组 Specs：交给 `aicoding-specpilot`。
-- 项目计划、任务拆解、里程碑规划、工程架构设计、API 设计、测试矩阵、安全评审。
+- 写、修改或评审 PRD：交给对应 PRD 专业流程或 skill。
+- 生成或重组 Specs：交给对应 Specs 专业流程或 skill。
+- 项目计划、任务拆解、里程碑规划、工程架构设计、API 设计、测试矩阵、安全评审、QA 或发布检查。
 - 用户只是在讨论是否需要治理结构；此时只分析，不写文件。
 
 ## 输出结构
@@ -45,35 +46,33 @@ AGENTS.md
   PRINCIPLES.md
   STATE.md
   LOG.md
-  CHECKS.md
   SUGGESTIONS.md
 ```
 
-不要新增其它默认治理文件或目录，除非用户明确要求扩展。不要默认创建 handoff、learning records、out-of-scope、notes 等接续或记忆目录。
+不要新增其它默认治理文件或目录，除非用户明确要求扩展。不要默认创建额外接续、记忆、范围边界、检查或笔记目录。
 
 ## 生成物职责契约
 
-这 7 个生成物必须各自只承担一个主职责：
+这 6 个生成物必须各自承担清晰职责：
 
 | 文件 | 主职责 |
 |---|---|
-| `AGENTS.md` | agent 工作入口，只写 Mandatory Loop、Governance Hooks、Hard Rules 和冲突处理 |
-| `.foundation/README.md` | 治理文件索引与信息性质路由权威 |
+| `AGENTS.md` | agent 工作短入口，保留最低读取、关键触发、硬底线和 README 路由指针 |
+| `.foundation/README.md` | 治理文件索引、信息性质路由、缺失风险判断和扩展文档登记 |
 | `.foundation/PRINCIPLES.md` | 长期原则、禁区和取舍依据 |
-| `.foundation/STATE.md` | 当前接续快照，只回答“现在接手要知道什么” |
-| `.foundation/LOG.md` | 历史账本，记录重要变更、决策、事故、验收和复盘 |
-| `.foundation/CHECKS.md` | 检查清单，只检查是否按既定规则执行 |
-| `.foundation/SUGGESTIONS.md` | 未裁决治理提案队列 |
+| `.foundation/STATE.md` | 当前接续快照，顶部包含极短项目简述 |
+| `.foundation/LOG.md` | 重要历史账本，记录重要变更、决策、事故、验收和复盘 |
+| `.foundation/SUGGESTIONS.md` | 未裁决治理提案队列，也承接防复发候选 |
 
 硬边界：
 
-- `README.md` 是唯一记忆路由，按信息性质引导 agent 判断写入位置。
-- `STATE.md` 只写当前接手快照，不写历史流水，也不复制已有 artifact 全文。
-- `LOG.md` 承载已发生的重要事件。
-- `AGENTS.md` 不展开检查表，只保留工作循环、治理触发点和硬规则。
-- `CHECKS.md` 不重新定义路由。
-- `PRINCIPLES.md` 不写状态、日志或检查步骤。
-- 扩展文档只登记职责、依赖性质和读取时机；foundation 不接管 PRD、Specs、任务拆分、架构设计或其它专业流程。
+- `README.md` 是唯一记忆路由，按信息性质和缺失风险引导 agent 判断读写位置。
+- `STATE.md` 只写当前接续快照，不写历史流水，也不复制已有 artifact 全文。
+- `LOG.md` 承载已发生的重要事件，不扩展为执行流水、错误记录或未来必读规则库。
+- `AGENTS.md` 不展开完整治理知识，只保留短入口、关键触发和硬底线。
+- `PRINCIPLES.md` 不写状态、日志或执行流程。
+- `SUGGESTIONS.md` 只记录未裁决治理提案和防复发候选，不承载普通想法、任务 backlog、错误日志或执行记录。
+- 扩展文档只登记职责、依赖性质和读取时机；foundation 不接管 PRD、Specs、任务拆分、架构设计、QA 或其它专业流程。
 
 ## 工作流
 
@@ -82,14 +81,14 @@ AGENTS.md
 开始前确认：
 
 - 目标项目目录是否明确。
-- 用户是否是在请求初始化治理地基，而不是 PRD、Specs 或项目计划。
+- 用户是否是在请求初始化治理地基，而不是 PRD、Specs、项目计划或专业执行流程。
 - 目标目录是否已经存在 `AGENTS.md`、`.foundation/` 或目标同名文件。
 
 如果用户没有给出目标目录，但当前工作目录明显就是目标项目，可以使用当前目录并说明。若当前目录不是用户项目或存在多个候选目录，先询问。
 
 ### 2. Write Authorization Gate
 
-只有用户明确要求“初始化 / 创建 / 生成 / 应用 / 打地基 / 建治理舱”时，才写入文件。
+只有用户明确要求“初始化 / 创建 / 生成 / 应用 / 打地基 / 建立治理文件结构”时，才写入文件。
 
 如果用户只是问“怎么看 / 有没有必要 / 应该怎么设计 / 能不能优化”，只输出分析、建议或计划，不运行脚本、不创建文件。
 
@@ -139,26 +138,12 @@ python scripts/init_foundation.py <target_dir> --project-name <name> --language 
 
 生成后检查：
 
-- 脚本仍只生成 `AGENTS.md` + `.foundation/` 下 6 个文件。
-- `AGENTS.md` 只包含入口协议、Mandatory Loop、Governance Hooks、Hard Rules 和冲突处理，不展开详细检查表。
-- `.foundation/README.md` 包含文件职责和唯一记忆路由表，路由按信息性质表达，不写成机械 if-else。
-- `.foundation/README.md` 包含扩展文档登记、硬依赖 / 软依赖判断，并说明共享语言文档只做术语，不承载 spec、实现细节或计划。
-- `.foundation/PRINCIPLES.md` 只包含长期原则、禁区和取舍依据，不写状态/日志更新步骤。
-- `.foundation/PRINCIPLES.md` 包含长期文档抗过期、临时验证产物不自动成为长期结构、foundation 不接管专业流程。
-- `.foundation/STATE.md` 使用“最近接续点”，最多保留 3-5 条恢复需要的信息。
-- `.foundation/STATE.md` 包含当前目标、当前状态、下一步建议、关键约束、验收方式和范围外事项；引用已有 artifact，不复制全文。
-- `.foundation/STATE.md` 包含“治理脉冲”，以 3 个合格治理信号为阈值触发治理复盘；`STATE.md` 通过修订保持当前接手快照，不追加成历史流水。
-- `.foundation/LOG.md` 记录已发生的重要事件、决策、变更、事故、验收和复盘。
-- `.foundation/LOG.md` 支持记录“不做 / 拒绝 / 暂不支持”的裁决、原因和取舍，避免未来重复重开。
-- `.foundation/CHECKS.md` 只做检查表，不重新定义文件职责或记忆路由。
-- `.foundation/CHECKS.md` 包含治理钩子检查、长期原则误投扫描、自进化运行检查和发布一致性检查。
-- `.foundation/CHECKS.md` 包含反馈环优先、临时验证产物归宿、重要决策沉淀判断和长期文档抗过期检查。
-- `.foundation/CHECKS.md` 包含接手快照更新、引用优先、复制膨胀检查、范围边界检查和不做事项复现检查。
-- `.foundation/SUGGESTIONS.md` 是未裁决治理提案队列，不吞掉已裁决且应生效的正式规则。
-- `.foundation/SUGGESTIONS.md` 支持已替代状态，旧提案或旧理解被新裁决取代时保留历史但标记替代。
-- `LOG.md` 和 `SUGGESTIONS.md` 没有被改造成 ADR 文件；不得默认创建 `docs/adr/` 或其它扩展目录。
-- 不默认创建 `MISSION.md`、`learning-records/`、`NOTES.md`、`.out-of-scope/` 或 handoff 文档。
-- `STATE.md`、`LOG.md`、`SUGGESTIONS.md` 的时间统一使用“日期 + 分钟 + 时区”，例如 `2026-06-02 14:35 CST`，不要求秒级。
+- 结构完整：只生成根目录 `AGENTS.md` 和 `.foundation/` 下 5 个文件。
+- 职责清晰：6 个生成物符合职责契约，没有互相重定义路由、状态、历史或提案。
+- 关键能力存在：写入授权、冲突保护、信息性质路由、当前接续、历史记录、未裁决提案、旧项目增量同步。
+- 表达可执行：重要规则使用清楚的行为描述，避免依赖自造词、错用词或只有用户自己理解的隐喻。
+- 不新增默认目录：扩展文档、接续记忆、决策记录、检查体系或专业流程只登记职责和读取时机，不由本 skill 默认创建。
+- 时间统一：`STATE.md`、`LOG.md`、`SUGGESTIONS.md` 使用 `YYYY-MM-DD HH:mm CST`，不要求秒级。
 
 如果检查发现职责重复，先修订模板，再重新用临时目录 dry run。
 
@@ -172,64 +157,54 @@ python scripts/init_foundation.py <target_dir> --project-name <name> --language 
 
 1. 先读取目标项目 `.foundation/README.md` 的 Foundation 版本和最近检查更新时间。
 2. 对照本 skill 的 `metadata.version`、当前模板和生成物职责契约，判断可能缺少哪些治理能力。
-3. 做一次升级覆盖完整性审计：逐一判断 7 个生成物如何增量对齐当前版本能力；每个生成物都要留下处置结论和依据。
-4. 只提出升级建议，或建议写入目标项目 `.foundation/SUGGESTIONS.md`。
-5. 不重新初始化，不整文件覆盖，不删除初始化后用户新增的内容、手写规则、历史日志、状态或提案。
-6. 若用户明确要求执行升级，只做增量修订，把新版能力补入相关生成物，同时保留项目特有状态、背景和历史日志。
-7. 若某个生成物没有可适用的新能力，也要留下“已检查、无需变更”的依据。
-8. 只有当 7 个生成物均已完成增量对齐，或有明确保留依据，才能把目标项目标记为已同步到新版本。
+3. 做一次升级覆盖完整性审计：逐一判断 6 个默认生成物如何增量对齐当前版本能力；每个生成物都要留下处置结论和依据。
+4. 如果旧项目已有 `.foundation/CHECKS.md`，说明新版 foundation 不再默认生成它；按项目实际判断保留为扩展文档、迁移有价值内容、归档或请求用户裁决，不自动覆盖或删除。
+5. 只提出升级建议，或建议写入目标项目 `.foundation/SUGGESTIONS.md`。
+6. 不重新初始化，不整文件覆盖，不删除初始化后用户新增的内容、手写规则、历史日志、状态或提案。
+7. 若用户明确要求执行升级，只做增量修订，把新版能力补入相关生成物，同时保留项目特有状态、背景和历史日志。
+8. 若某个生成物没有可适用的新能力，也要留下“已检查、无需变更”的依据。
+9. 只有当 6 个默认生成物均已完成增量对齐，或有明确保留依据，才能把目标项目标记为已同步到新版本。
 
-升级审计建议使用轻量矩阵，避免只说“已检查”：
-
-| 生成物 | 当前观察 | 版本差异 / 能力缺口 | 增量动作 | 保留内容 | 依据 | 是否需用户裁决 |
-|---|---|---|---|---|---|---|
-| `AGENTS.md` |  |  | 更新 / 保留 / 建议 |  |  | 是 / 否 |
-| `.foundation/README.md` |  |  | 更新 / 保留 / 建议 |  |  | 是 / 否 |
-| `.foundation/PRINCIPLES.md` |  |  | 更新 / 保留 / 建议 |  |  | 是 / 否 |
-| `.foundation/STATE.md` |  |  | 更新 / 保留 / 建议 |  |  | 是 / 否 |
-| `.foundation/LOG.md` |  |  | 更新 / 保留 / 建议 |  |  | 是 / 否 |
-| `.foundation/CHECKS.md` |  |  | 更新 / 保留 / 建议 |  |  | 是 / 否 |
-| `.foundation/SUGGESTIONS.md` |  |  | 更新 / 保留 / 建议 |  |  | 是 / 否 |
+升级审计要覆盖全部 6 个默认生成物。对每个文件记录当前观察、能力差异、增量动作、保留依据和是否需要用户裁决；不要只说“已检查”。
 
 版本标记规则：
 
 - 审计完成不等于已同步。
 - 部分文件更新不等于已同步。
-- 只有 7 个生成物均已增量处理，或有清楚的保留依据，且 `LOG.md` 记录了本次同步，才能更新目标项目 `.foundation/README.md` 的 Foundation 版本和最近检查时间。
+- 只有 6 个默认生成物均已增量处理，或有清楚的保留依据，且 `LOG.md` 记录了本次同步，才能更新目标项目 `.foundation/README.md` 的 Foundation 版本和最近检查时间。
 - 如果只是检查并提出建议，不更新目标项目 Foundation 版本。
 
 旧项目升级时，重点检查职责是否重复：
 
-- 根目录入口文件是否仍能触发当前版本的工作循环和记录判断。
+- 根目录入口文件是否仍能触发当前版本的工作入口和记录判断。
+- `README.md` 是否仍是信息路由权威，是否存在固定读取表过重的问题。
 - `STATE.md` 是否正在充当历史日志。
-- `README.md` 是否变成第二份 `AGENTS.md`。
-- `AGENTS.md` 是否重复展开 `CHECKS.md`。
-- `PRINCIPLES.md` 是否混入执行步骤。
-- `CHECKS.md` 是否重新定义了文件职责。
-- `SUGGESTIONS.md` 是否仍能承接未裁决治理提案。
+- `LOG.md` 是否被扩展成执行流水、错误记录或未来必读规则库。
+- `PRINCIPLES.md` 是否混入执行流程或临时状态。
+- `SUGGESTIONS.md` 是否仍能承接未裁决治理提案和防复发候选。
 - 是否保留了用户初始化后新增的额外内容和项目特有规则。
 
 ## 治理演进规则
 
-`PRINCIPLES.md` 是项目判断依据，不是 AI 可自由改写的笔记。`SUGGESTIONS.md` 不是普通建议箱，而是未裁决治理提案队列。
+`PRINCIPLES.md` 是项目判断依据，不是 AI 可自由改写的笔记。`SUGGESTIONS.md` 不是普通建议箱，而是未裁决治理提案队列和防复发候选队列。
 
 - AI 自发发现但尚未被用户裁决的治理变更，应进入 `SUGGESTIONS.md`。
 - 具备长期约束意义且裁决清晰的信息，可以进入对应正式治理文件，并记录到 `LOG.md`。
 - 未裁决、影响不清或只是 AI 自发发现的建议，先进入 `SUGGESTIONS.md` 或请求用户裁决。
-- 为了当前任务省事、绕过检查、通过一次执行，不得修改原则。
+- 只有可能复发、影响后续 agent 判断或行动、暴露治理缺口且需要用户裁决的防复发候选，才进入 `SUGGESTIONS.md`。
+- 为了当前任务省事、绕过验证、通过一次执行，不得修改原则。
 - 变更、事故、迭代、周期性复盘后，应主动考虑是否需要提出治理演进建议。
 
 ## 完成检查
 
 结束前确认：
 
-- `AGENTS.md` 已指向 `.foundation/README.md`、`PRINCIPLES.md`、`STATE.md`。
-- `.foundation/` 中 6 个文件均已生成。
-- 7 个生成物符合职责契约，按信息性质路由，未出现明显重复承载。
+- `AGENTS.md` 已指向 `.foundation/README.md` 和 `.foundation/STATE.md`。
+- `.foundation/` 中 5 个文件均已生成。
+- 6 个生成物符合职责契约，按信息性质路由，未出现明显重复承载。
 - `PRINCIPLES.md` 区分裁决清晰的长期约束和未裁决治理建议。
-- `STATE.md` 没有生成详细项目计划或历史流水。
-- `STATE.md` 是当前接手快照，包含下一步、约束、验收和范围外事项；最近接续点保持 3-5 条当前恢复信息。
-- `SUGGESTIONS.md` 是待裁决治理提案队列。
-- 扩展文档、共享语言和重要决策判断被吸收到现有治理体系中，未新增默认目录。
-- 接续和机构记忆规则被吸收到现有治理体系中，未新增 handoff、learning records、out-of-scope 或 notes 目录。
+- `STATE.md` 顶部包含极短项目简述，没有生成详细项目计划或历史流水。
+- `LOG.md` 没有新增错误记录语义或错误专用字段。
+- `SUGGESTIONS.md` 是未裁决治理提案队列和防复发候选队列。
+- 扩展文档、共享语言、重要决策、接续和长期记忆规则已吸收到现有治理体系中，未新增默认目录。
 - 若存在冲突，未覆盖任何已有文件。

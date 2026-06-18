@@ -1,42 +1,31 @@
 # AGENTS.md
 
-本文档是 `{{PROJECT_NAME}}` 的 agent 工作入口。它只定义开工前必须遵守的入口协议、Mandatory Loop 和 Hard Rules；详细文件职责、记录路由和检查清单以 `.foundation/` 为准。
+本文档是 `{{PROJECT_NAME}}` 的 agent 工作入口。它只保留最低启动动作、关键触发和硬底线；文件职责、信息路由和扩展文档登记以 `.foundation/README.md` 为准。
 
-## Mandatory Loop
+## Minimum Start
 
-每轮重要工作按顺序执行：
+重要工作开始前，先读取：
 
-1. **Load Foundation**：读取本文件、`.foundation/README.md`、`.foundation/PRINCIPLES.md`、`.foundation/STATE.md`；重大改动前读取 `.foundation/CHECKS.md`。
-2. **Align Before Action**：明确本轮目标、边界、影响范围和验收方式；信息不足时先问最小澄清问题。
-3. **Plan With Boundary**：说明会触碰哪些文件或模块、依赖哪些文件或模块、不触碰哪些文件或模块。
-4. **Execute With Validation**：优先用脚本、临时目录、最小样例、局部路径或静态检查验证；不可旁路时说明风险。
-5. **Verify And Repair**：自检、修复、再验证，直到达到本轮验收标准或明确阻塞。
-6. **Record By Route**：按 `.foundation/README.md` 的文件职责和记忆路由，先判断信息性质，再更新对应治理文件；不要把长期原则、当前状态、历史事件和未裁决提案混写。
-7. **Advance Governance Pulse**：若本轮暴露合格治理信号，更新 `.foundation/STATE.md` 的治理脉冲；达到 3 / 3 后，在自然停顿点做轻量复盘并重置计数。
-8. **Foundation Suggestion Scan**：重要工作结束前，主动检查治理文件是否暴露出需要演进的建议；未裁决建议写入 `.foundation/SUGGESTIONS.md`。
+- 本文件
+- `.foundation/README.md`
+- `.foundation/STATE.md`
 
-## Governance Hooks / 治理触发点
+是否需要读取 `.foundation/PRINCIPLES.md`、`.foundation/LOG.md` 或 `.foundation/SUGGESTIONS.md`，按 `.foundation/README.md` 的信息性质和缺失风险判断。
 
-遇到以下时机，必须先做治理判断，再按 `.foundation/README.md` 的信息性质路由处理：
+## Governance Triggers
 
-- **Before Work**：读取治理入口，确认本轮目标、边界、影响范围、验收方式和会触碰的文件；按任务类型选择相关项目资料，不默认全量读取。
-- **Before Mutation**：检查是否存在冲突文件、旧结构、用户改动、职责边界不清、主交付物或对外交付物风险。
-- **After Work**：按路由记录状态、日志或未裁决建议，更新治理脉冲，并检查是否需要治理演进。
+- **Before Work**：对齐本轮目标、边界、影响范围和验收方式；信息不足时先问最小澄清问题。
+- **Before Mutation**：触碰主交付物、稳定结构、发布路径、已有用户改动或同名文件前，先判断风险、冲突和回退方式。
+- **After Work**：收尾前判断是否需要更新当前状态、记录重要历史、提出未裁决治理提案或推进治理复盘触发计数。
 
-典型治理信号包括：用户消息出现“记住 / 以后 / 不要再 / 每次 / 为什么没触发 / 同步 / 升级 / 版本 / 出问题了”；用户指出错误、遗漏、误解或重复问题；`AGENTS.md` 或 `.foundation/` 被修改；Skill 本体、模板、脚本或生成物能力变化；长任务、跨会话或上下文混乱；治理脉冲达到 3 / 3。
-
-触发治理判断不等于机械改文件；先判断信息性质、裁决状态和影响范围，再记录、更新或提出待裁决建议。
-
-治理脉冲只统计合格治理信号，不按聊天轮次或普通任务次数计数。合格信号包括：重复协作摩擦、规则冲突、用户明确纠偏、agent 因治理规则犹豫或误判、事故/返工暴露规则缺口、同类建议重复出现。
+用户指出错误、遗漏、误解、重复问题或规则冲突时，先修复当前问题，再按 `.foundation/README.md` 判断是否需要记录或提出治理改进。
 
 ## Hard Rules
 
 - 不静默覆盖已有文件。发现冲突、旧结构或同名文件时，先说明影响并请求用户裁决。
-- 触碰主交付物、对外交付物或发布路径前，先确认是否需要备份、旁路验证和用户最终许可。
-- 实现或行为变更后，同轮判断是否需要同步治理文件；不要只改主体而遗漏状态、日志、检查或原则。
-- 不把未裁决的治理建议写进正式治理文件；影响不清时先进入 `.foundation/SUGGESTIONS.md` 或请求用户裁决。
-- 不把 PRD、Specs、项目计划、测试矩阵或实现任务写入治理地基；这些内容应由对应流程或 skill 处理。
-- `AGENTS.md` 是短入口，不承载完整业务、架构、开发规范或操作手册；这些内容应放入项目文档，并在 `.foundation/README.md` 登记读取时机。
-- `STATE.md` 只写当前接续信息，不写历史流水；完整历史写入 `LOG.md`。
-- `STATE.md` 通过修订保持当前快照，最近接续点只保留 3-5 条；不要把它当追加日志。
+- 高风险改动先用低风险方式验证；不可行时保留备份或回退点，再请求用户许可。
+- 记录前先按 `.foundation/README.md` 判断信息性质；不要把长期原则、当前状态、历史事件和未裁决提案混写。
+- 未裁决的治理建议不进入正式治理文件；影响不清时进入 `.foundation/SUGGESTIONS.md` 或请求用户裁决。
+- 不把 PRD、Specs、项目计划、测试矩阵或实现任务写入治理地基；这些内容应由对应流程或项目文档承接。
+- `STATE.md` 只放当前接续快照，通过修订保持当下状态；不要写成历史流水。
 - 如果用户要求使用真实 sub-agent 验收，而当前环境不可用，必须说明不可用，不能假装完成。

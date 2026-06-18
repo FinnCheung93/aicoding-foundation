@@ -15,11 +15,10 @@ FILES = [
     (".foundation/PRINCIPLES.md", ".foundation/PRINCIPLES.md"),
     (".foundation/STATE.md", ".foundation/STATE.md"),
     (".foundation/LOG.md", ".foundation/LOG.md"),
-    (".foundation/CHECKS.md", ".foundation/CHECKS.md"),
     (".foundation/SUGGESTIONS.md", ".foundation/SUGGESTIONS.md"),
 ]
 
-FOUNDATION_VERSION = "1.7.0"
+FOUNDATION_VERSION = "1.8.0"
 
 
 def parse_args() -> argparse.Namespace:
