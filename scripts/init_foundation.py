@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Initialize an agentic governance foundation in a project directory."""
+"""Initialize an agentic foundation in a project directory."""
 
 from __future__ import annotations
 
@@ -9,21 +9,32 @@ import sys
 from pathlib import Path
 
 
+FOUNDATION_VERSION = "2.0.0"
+
 FILES = [
     ("AGENTS.md", "AGENTS.md"),
-    (".foundation/README.md", ".foundation/README.md"),
-    (".foundation/PRINCIPLES.md", ".foundation/PRINCIPLES.md"),
-    (".foundation/STATE.md", ".foundation/STATE.md"),
-    (".foundation/LOG.md", ".foundation/LOG.md"),
-    (".foundation/SUGGESTIONS.md", ".foundation/SUGGESTIONS.md"),
+    ("README.md", "README.md"),
+    ("docs/README.md", "docs/README.md"),
+    ("docs/foundation/README.md", "docs/foundation/README.md"),
+    ("docs/foundation/PRINCIPLES.md", "docs/foundation/PRINCIPLES.md"),
+    ("docs/foundation/STATE.md", "docs/foundation/STATE.md"),
+    ("docs/foundation/LOG.md", "docs/foundation/LOG.md"),
 ]
 
-FOUNDATION_VERSION = "1.9.1"
+CONFLICT_PATHS = [
+    "AGENTS.md",
+    "README.md",
+    "SUGGESTIONS.md",
+    "CHECKS.md",
+    "docs/README.md",
+    "docs/foundation",
+    ".foundation",
+]
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Create AGENTS.md and .foundation/ governance files for an agentic project."
+        description="Create AGENTS.md, README.md, docs/README.md, and docs/foundation files."
     )
     parser.add_argument("target_dir", help="Project directory to initialize.")
     parser.add_argument("--project-name", default=None, help="Project display name.")
@@ -41,12 +52,14 @@ def template_dir() -> Path:
 
 def detect_conflicts(target: Path) -> list[Path]:
     conflicts: list[Path] = []
-    if (target / ".foundation").exists():
-        conflicts.append(target / ".foundation")
+    for rel in CONFLICT_PATHS:
+        path = target / rel
+        if path.exists():
+            conflicts.append(path)
     for _, output_rel in FILES:
-        output_path = target / output_rel
-        if output_path.exists() and output_path not in conflicts:
-            conflicts.append(output_path)
+        path = target / output_rel
+        if path.exists() and path not in conflicts:
+            conflicts.append(path)
     return conflicts
 
 
@@ -83,7 +96,7 @@ def main() -> int:
     conflicts = detect_conflicts(target)
     if conflicts:
         print("FOUNDATION_INIT_CONFLICT")
-        print("The target directory already contains foundation files. No files were written.")
+        print("The target directory already contains foundation or entrance files. No files were written.")
         for path in conflicts:
             print(f"- {path}")
         return 2

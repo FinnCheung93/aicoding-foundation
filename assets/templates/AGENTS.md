@@ -1,33 +1,30 @@
 # AGENTS.md
 
-本文档是 `{{PROJECT_NAME}}` 的 agent 工作入口。它只保留最低启动动作、关键触发和硬底线；文件职责、信息路由和扩展文档登记以 `.foundation/README.md` 为准。
+本文档是 `{{PROJECT_NAME}}` 的 agent 工作入口。完整文档地图见 `docs/README.md`；治理路由见 `docs/foundation/README.md`。
 
-## Minimum Start
+## Start Here
 
-重要工作开始前，先读取：
+重要工作开始前，最少读取：
 
-- 本文件
-- `.foundation/README.md`
-- `.foundation/STATE.md`
+- `README.md`
+- `docs/README.md`
+- `docs/foundation/STATE.md`
 
-是否需要读取 `.foundation/PRINCIPLES.md`、`.foundation/LOG.md` 或 `.foundation/SUGGESTIONS.md`，按 `.foundation/README.md` 的信息性质和缺失风险判断。
+是否继续读取 `docs/foundation/PRINCIPLES.md`、`docs/foundation/LOG.md`、ADR、归档索引、review 或其它项目文档，由本轮风险和 `docs/foundation/README.md` 判断。
 
-## Governance Triggers
+## Working Rules
 
-- **Before Work**：先明确本轮目标、边界、影响范围和可验证完成标准；不确定就问，别猜。
-- **Before Mutation**：触碰主交付物、稳定结构、发布路径、已有用户改动或同名文件前，先判断风险、冲突和回退方式。
-- **After Work**：收尾前判断是否需要更新当前状态、记录重要历史、提出未裁决治理提案或推进治理复盘触发计数。
+- 先对齐目标、边界和完成标准；不确定就问，能可靠确认的先自己确认。
+- 只做与本轮目标直接相关的事；不顺手重构、扩写、改名或引入新流程。
+- 不静默覆盖已有文件、用户改动或稳定结构；有冲突和高风险时先说明影响与回退方式。
+- 完成前做与风险匹配的验证；不能验证时明确说明，不伪造结果。
+- 记录前先判断信息性质；长期规则、当前状态、历史记录、决策理由和具体交付物分开承载。
+- 高风险改动优先用低风险方式让用户验证；不可行时先保留备份或回退点，再改主体。
 
-用户指出错误、遗漏、误解、重复问题或规则冲突时，先修复当前问题，再按 `.foundation/README.md` 判断是否需要记录或提出治理改进。
+## Foundation Triggers
 
-## Hard Rules
+当用户说“记住、以后、不要再、为什么又、同步、升级、复盘、决策、归档、ADR、hook、subagent”，或当你发现文档与项目事实不一致、同类问题复现、旧文档污染入口、重要决策可能被遗忘时，先做一次轻量判断：
 
-- 不静默覆盖已有文件。发现冲突、旧结构或同名文件时，先说明影响并请求用户裁决。
-- 没要求的不写；只做与本轮目标直接相关的增量修改，不顺手重构或扩展。
-- 没有明确收益时，不强行改写、吸收或提出建议；可以说明已检查，无需处理。
-- 高风险改动先用低风险方式验证；不可行时保留备份或回退点，再请求用户许可。
-- 记录前先按 `.foundation/README.md` 判断信息性质；不要把长期原则、当前状态、历史事件和未裁决提案混写。
-- 未裁决的治理建议不进入正式治理文件；影响不清时进入 `.foundation/SUGGESTIONS.md` 或请求用户裁决。
-- 不把 PRD、Specs、项目计划、测试矩阵或实现任务写入治理地基；这些内容应由对应流程或项目文档承接。
-- `STATE.md` 只放当前接续快照，通过修订保持当下状态；不要写成历史流水。
-- 不能伪造能力或证据。工具、权限或环境不可用时，说明不可用；只报告真实完成的检查和验收。
+- 无需记录：继续当前任务。
+- 已获授权且位置明确：按 `docs/foundation/README.md` 增量更新对应文件。
+- 未获授权、影响不清或需要新增结构：先提出候选和理由，等用户裁决。

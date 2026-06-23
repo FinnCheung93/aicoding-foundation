@@ -1,211 +1,173 @@
 ---
 name: agentic-foundation
 description: >-
-  Initialize a lightweight governance foundation for agentic projects, or review and incrementally
-  sync an existing foundation to the current governance capability. Use when the user has chosen a
-  project folder and wants AGENTS.md plus a .foundation/ governance cockpit with project principles,
-  state, log, and human-reviewed suggestions. Also use for Chinese requests like 项目初始化,
-  打地基, 治理舱, agent 工作灯塔, 开工前结构, agentic foundation, 检查 foundation 版本, 同步治理地基, or 升级 foundation.
-  Do not use for PRD writing, SDD Specs generation, project planning, task breakdown, engineering
-  architecture, QA, release checks, acceptance checklists, or direct implementation. If the user is
-  only discussing whether a governance foundation is useful, analyze only and do not write files.
+  Initialize, review, incrementally sync, or extend an agentic project foundation.
+  Use when the user wants to 打地基, 初始化项目地基, 建立 agent 工作入口, create AGENTS.md,
+  create a project/document map, create docs/foundation governance files, sync or upgrade an
+  existing .foundation or docs/foundation structure, or add foundation modules such as ADR,
+  archive, open questions, hooks, subagent review workflow, or coding guidance. Do not use for
+  PRD writing, Specs generation, project planning, task breakdown, architecture design, QA,
+  release checks, or direct implementation unless the user is asking only to register their
+  entry points in the foundation. If the user is only discussing whether a foundation is useful,
+  analyze only and do not write files.
 metadata:
-  short-description: Initialize agentic project governance
-  version: v1.9.1
-  updated: 2026-06-18
+  short-description: Initialize or sync project foundation
+  version: v2.0.0
+  updated: 2026-06-23
 ---
 
 # Agentic Foundation
 
-这个 skill 用于在 agent 参与的项目开工前初始化一套轻量治理地基：根目录 `AGENTS.md` + `.foundation/`。它让后续 agent 工作有入口、长期原则、当前状态、历史记录和未裁决治理提案。
+Use this skill to create or maintain a lightweight foundation for projects where agents need a stable entrance, current handoff state, long-lived principles, important history, and optional governance modules.
 
-## 适用场景
+## Default Output
 
-适用：
-
-- 用户刚创建或选定一个新项目目录，希望初始化 agent 协作工作地基。
-- 用户说“项目初始化 / 打地基 / 初始化项目地基 / 治理舱 / agent 工作灯塔 / agent 工作规则 / 开工前结构 / Agentic Foundation”。
-- 用户需要一个跨会话续航和自进化机制，而不是只依赖当前对话上下文。
-- 用户要求检查、同步或升级已有 `.foundation/` 治理地基。
-
-不适用：
-
-- 写、修改或评审 PRD：交给对应 PRD 专业流程或 skill。
-- 生成或重组 Specs：交给对应 Specs 专业流程或 skill。
-- 项目计划、任务拆解、里程碑规划、工程架构设计、API 设计、测试矩阵、安全评审、QA 或发布检查。
-- 用户只是在讨论是否需要治理结构；此时只分析，不写文件。
-
-## 输出结构
-
-默认在目标项目根目录生成：
+For a new project, create only:
 
 ```text
 AGENTS.md
-.foundation/
+README.md
+docs/
   README.md
-  PRINCIPLES.md
-  STATE.md
-  LOG.md
-  SUGGESTIONS.md
+  foundation/
+    README.md
+    PRINCIPLES.md
+    STATE.md
+    LOG.md
 ```
 
-不要新增其它默认治理文件或目录，除非用户明确要求扩展。不要默认创建额外接续、记忆、范围边界、检查或笔记目录。
+Do not create ADR, archive, review, hook, coding-guidance, open-questions, QA, TDD, handoff, notes, or suggestion files by default. Add them only through the add-on module workflow.
 
-## 生成物职责契约
+## File Contract
 
-这 6 个生成物必须各自承担清晰职责：
-
-| 文件 | 主职责 |
+| File | Responsibility |
 |---|---|
-| `AGENTS.md` | agent 工作短入口，保留最低读取、关键触发、硬底线和 README 路由指针 |
-| `.foundation/README.md` | 治理文件索引、信息性质路由、缺失风险判断和扩展文档登记 |
-| `.foundation/PRINCIPLES.md` | 长期原则、禁区和取舍依据 |
-| `.foundation/STATE.md` | 当前接续快照，顶部包含极短项目简述 |
-| `.foundation/LOG.md` | 重要历史账本，记录重要变更、决策、事故、验收和复盘 |
-| `.foundation/SUGGESTIONS.md` | 未裁决治理提案队列，也承接防复发候选 |
+| `AGENTS.md` | Short agent entrance: what to read first, hard rules, and when to use the foundation. |
+| `README.md` | Project front door: one-line project description and pointer to `docs/README.md`. |
+| `docs/README.md` | Project map: active document entrances, minimum read set, enabled modules, and archive index if present. |
+| `docs/foundation/README.md` | Foundation routing authority: where information belongs, when to read or write, and how modules are added. |
+| `docs/foundation/PRINCIPLES.md` | Current long-lived rules, forbidden zones, stable preferences, and tradeoffs. |
+| `docs/foundation/STATE.md` | Current handoff snapshot, revised to stay current; not a historical log. |
+| `docs/foundation/LOG.md` | Important history ledger: initialization, upgrades, decisions, incidents, reviews, archive events, and artifact references. |
 
-硬边界：
+Keep details in the smallest appropriate artifact. Prefer paths and short summaries over copying long PRDs, Specs, logs, reviews, issues, or handoff text into foundation files.
 
-- `README.md` 是唯一记忆路由，按信息性质和缺失风险引导 agent 判断读写位置。
-- `STATE.md` 只写当前接续快照，不写历史流水，也不复制已有 artifact 全文。
-- `LOG.md` 承载已发生的重要事件，不扩展为执行流水、错误记录或未来必读规则库。
-- `AGENTS.md` 不展开完整治理知识，只保留短入口、关键触发和硬底线。
-- `PRINCIPLES.md` 不写状态、日志或执行流程。
-- `SUGGESTIONS.md` 只记录未裁决治理提案和防复发候选，不承载普通想法、任务 backlog、错误日志或执行记录。
-- 扩展文档只登记职责、依赖性质和读取时机；foundation 不接管 PRD、Specs、任务拆分、架构设计、QA 或其它专业流程。
+## Workflow Selection
 
-## 工作流
+Choose exactly one entry:
 
-### 1. Intake Gate
+1. **Initialize**: user asks to create a foundation in a project folder.
+2. **Sync / Upgrade**: user asks to update an existing foundation to the current capability.
+3. **Add Module**: user asks for or agrees to add ADR, archive, open questions, hooks, subagent workflow, coding guidance, or another optional foundation module.
 
-开始前确认：
+If the user is only asking for analysis, design discussion, or whether a foundation is useful, do not write files.
 
-- 目标项目目录是否明确。
-- 用户是否是在请求初始化治理地基，而不是 PRD、Specs、项目计划或专业执行流程。
-- 目标目录是否已经存在 `AGENTS.md`、`.foundation/` 或目标同名文件。
+## Initialize
 
-如果用户没有给出目标目录，但当前工作目录明显就是目标项目，可以使用当前目录并说明。若当前目录不是用户项目或存在多个候选目录，先询问。
-
-### 2. Write Authorization Gate
-
-只有用户明确要求“初始化 / 创建 / 生成 / 应用 / 打地基 / 建立治理文件结构”时，才写入文件。
-
-如果用户只是问“怎么看 / 有没有必要 / 应该怎么设计 / 能不能优化”，只输出分析、建议或计划，不运行脚本、不创建文件。
-
-### 3. 冲突检查
-
-初始化前必须检查：
-
-- 根目录是否已有 `AGENTS.md`。
-- 根目录是否已有 `.foundation/`。
-- `.foundation/` 下是否已有计划生成的同名文件。
-
-只要存在冲突，就停止自动写入，并请用户决策：保留、备份后替换、手动合并，或改用其它目录。不要静默覆盖、合并或删除已有内容。
-
-### 4. 最小访谈
-
-无冲突后，先收集最少动态信息。只问会影响治理地基内容的问题，不做项目规划。
-
-最低信息：
-
-- 项目要做什么：一句话即可。
-- 主要风险：用户最担心 agent 乱动、误解或破坏的点。
-- 工作偏好：用户希望 agent 如何先思考、汇报、确认和记录。
-
-如果用户已经给出这些信息，可以直接使用，不要重复提问。信息不足但用户要求“按默认来”，可用保守默认值生成，并在 `STATE.md` 标注待补充。
-
-### 5. 生成骨架
-
-使用脚本生成固定骨架：
+1. Confirm the target project directory. If the current directory is clearly the target, use it and say so.
+2. Confirm write authorization. Words like 初始化, 创建, 生成, 应用, 打地基, 建立, 同步, 升级, 追加 mean write authorization for the relevant workflow.
+3. Check for conflicts before writing:
+   - `AGENTS.md`
+   - `README.md`
+   - `docs/README.md`
+   - `docs/foundation/`
+   - legacy `.foundation/`
+   - any output file with the same path
+4. If any conflict exists, stop and ask the user how to proceed. Do not overwrite, merge, delete, or migrate silently.
+5. Collect only minimal dynamic content:
+   - project purpose in one short paragraph
+   - main risks
+   - user work preferences
+6. Run:
 
 ```text
 python scripts/init_foundation.py <target_dir> --project-name <name> --language zh
 ```
 
-可选参数：
+Optional:
 
 ```text
---purpose "<项目要做什么>"
---risks "<主要风险>"
---preferences "<工作偏好>"
+--purpose "<project purpose>"
+--risks "<main risks>"
+--preferences "<work preferences>"
+--create-target
 ```
 
-脚本只负责创建固定结构和写入模板，不生成 PRD、Specs、项目计划或任务拆解。
+Use `--create-target` only when the user explicitly wants the target directory created.
 
-目标目录默认必须已经存在。只有用户明确要求同时创建目标目录时，才传入 `--create-target`。
+## Sync / Upgrade
 
-### 6. 验证生成物
+Sync is incremental alignment, not re-initialization.
 
-生成后检查：
+1. Identify the current structure: `AGENTS.md`, root `README.md`, `docs/README.md`, `docs/foundation/`, legacy `.foundation/`, old `SUGGESTIONS.md`, old `CHECKS.md`, ADR, archive, reviews, context docs, and project-specific entrances.
+2. Read only files relevant to the current foundation entrance, project map, minimum read path, or naturally encountered archive candidates.
+3. Preserve user-added content, project-specific rules, history, and artifact paths.
+4. Do not whole-file overwrite, auto-delete, auto-move, or bulk-promote old suggestions into ADR.
+5. For legacy `.foundation/`, actively suggest migration to `docs/foundation/` when it would reduce entrance confusion, but wait for confirmation.
+6. If old archive / backup / deprecated areas pollute the active map, scatter history, or break the reading path, propose migration to `docs/archive/` and wait for confirmation.
+7. Record the handling conclusion for each default file. Only mark the project synced when every default file is updated or has a clear keep-as-is reason.
 
-- 结构完整：只生成根目录 `AGENTS.md` 和 `.foundation/` 下 5 个文件。
-- 职责清晰：6 个生成物符合职责契约，没有互相重定义路由、状态、历史或提案。
-- 关键能力存在：写入授权、冲突保护、信息性质路由、当前接续、历史记录、未裁决提案、旧项目增量同步。
-- 表达可执行：重要规则使用直白行为句，避免自造词、错用词、隐喻和为了显得有产出而强行改写。
-- 不新增默认目录：扩展文档、接续记忆、决策记录、检查体系或专业流程只登记职责和读取时机，不由本 skill 默认创建。
-- 时间统一：`STATE.md`、`LOG.md`、`SUGGESTIONS.md` 使用 `YYYY-MM-DD HH:mm CST`，不要求秒级。
+If the user only asked for an update check, report the diff and recommendations without changing files.
 
-如果检查发现职责重复，先修订模板，再重新用临时目录 dry run。
+## Add Module
 
-### 7. 完成回复
+Optional modules are actively suggested when they would prevent recurring confusion or improve long-term maintainability, but never created automatically.
 
-初始化完成后，只用自然语言告诉用户项目目录初始化完成，并列出生成的入口文件。不要顺手生成下一步项目计划。
+Before creating or modifying module files, state:
 
-## 旧项目更新检查
+- what problem the module solves
+- what will be created or registered
+- when agents should read it
+- how it stops being useful or should be reviewed
+- whether it affects the foundation core
 
-当用户说“同步 / 升级 / 有更新 / 检查 foundation 版本 / 更新治理地基”时：
+Then wait for user confirmation.
 
-1. 先读取目标项目 `.foundation/README.md` 的 Foundation 版本和最近检查更新时间。
-2. 对照本 skill 的 `metadata.version`、当前模板和生成物职责契约，判断可能缺少哪些治理能力。
-3. 做一次升级覆盖完整性审计：逐一判断 6 个默认生成物如何增量对齐当前版本能力；每个生成物都要留下处置结论和依据。
-4. 如果旧项目已有 `.foundation/CHECKS.md`，说明新版 foundation 不再默认生成它；按项目实际判断保留为扩展文档、迁移有价值内容、归档或请求用户裁决，不自动覆盖或删除。
-5. 只提出升级建议，或建议写入目标项目 `.foundation/SUGGESTIONS.md`。
-6. 不重新初始化，不整文件覆盖，不删除初始化后用户新增的内容、手写规则、历史日志、状态或提案。
-7. 若用户明确要求执行升级，只做增量修订，把新版能力补入相关生成物，同时保留项目特有状态、背景和历史日志。
-8. 若某个生成物没有可适用的新能力，也要留下“已检查、无需变更”的依据。
-9. 只有当 6 个默认生成物均已完成增量对齐，或有明确保留依据，才能把目标项目标记为已同步到新版本。
+Common module defaults:
 
-升级审计要覆盖全部 6 个默认生成物。对每个文件记录当前观察、能力差异、增量动作、保留依据和是否需要用户裁决；不要只说“已检查”。
+| Module | Create or register after confirmation |
+|---|---|
+| ADR | `docs/adr/README.md` and the first ADR, or an existing decision-record location. |
+| Open Questions | `docs/foundation/OPEN_QUESTIONS.md` or an existing questions artifact. |
+| Subagent Workflow | A reply-only summary, or `docs/reviews/YYYY-MM-DD-topic.md` when traceability is needed. |
+| Hooks | Real hook configuration plus disable / rollback notes, or an existing hook location. |
+| Coding Guidance | `docs/foundation/CODING_GUIDANCE.md` or an existing coding / QA / TDD convention path. |
+| Archive | `docs/archive/README.md` when the first real archive event happens. |
 
-版本标记规则：
+Do not create empty module directories, placeholder READMEs, fixed role libraries, or unused process files.
 
-- 审计完成不等于已同步。
-- 部分文件更新不等于已同步。
-- 只有 6 个默认生成物均已增量处理，或有清楚的保留依据，且 `LOG.md` 记录了本次同步，才能更新目标项目 `.foundation/README.md` 的 Foundation 版本和最近检查时间。
-- 如果只是检查并提出建议，不更新目标项目 Foundation 版本。
+## Self-Evolution Rules
 
-旧项目升级时，重点检查职责是否重复：
+Agents should actively notice foundation update opportunities at natural lifecycle points:
 
-- 根目录入口文件是否仍能触发当前版本的工作入口和记录判断。
-- `README.md` 是否仍是信息路由权威，是否存在固定读取表过重的问题。
-- `STATE.md` 是否正在充当历史日志。
-- `LOG.md` 是否被扩展成执行流水、错误记录或未来必读规则库。
-- `PRINCIPLES.md` 是否混入执行流程或临时状态。
-- `SUGGESTIONS.md` 是否仍能承接未裁决治理提案和防复发候选。
-- 是否保留了用户初始化后新增的额外内容和项目特有规则。
+- user says remember, later, do not repeat, why again, sync, upgrade, review, decision, archive, ADR, hook, subagent
+- before modifying stable entrances, project maps, foundation files, templates, scripts, migrations, archive areas, or optional modules
+- while seeing conflicts, outdated paths, missing evidence, repeated errors, unverifiable results, scope creep, or document/repo drift
+- after important work, verification, migration, archive, sync, subagent review, or module addition
+- when context is getting long, a handoff is needed, or a phase is starting or ending
 
-## 治理演进规则
+Most triggers are internal checks. Show them only when they require a write, user decision, risk explanation, module suggestion, or explicit "no action" reason.
 
-`PRINCIPLES.md` 是项目判断依据，不是 AI 可自由改写的笔记。`SUGGESTIONS.md` 不是普通建议箱，而是未裁决治理提案队列和防复发候选队列。
+Self-evolution does not expand write authorization. It allows the agent to propose, route, update already-authorized files, or ask for confirmation.
 
-- AI 自发发现但尚未被用户裁决的治理变更，应进入 `SUGGESTIONS.md`。
-- 具备长期约束意义且裁决清晰的信息，可以进入对应正式治理文件，并记录到 `LOG.md`。
-- 未裁决、影响不清或只是 AI 自发发现的建议，先进入 `SUGGESTIONS.md` 或请求用户裁决。
-- 只有可能复发、影响后续 agent 判断或行动、暴露治理缺口且需要用户裁决的防复发候选，才进入 `SUGGESTIONS.md`。
-- 为了当前任务省事、绕过验证、通过一次执行，不得修改原则。
-- 变更、事故、迭代、周期性复盘后，应主动考虑是否需要提出治理演进建议。
+## Validation
 
-## 完成检查
+After any initialization or template/script change:
 
-结束前确认：
+1. Run the skill validator.
+2. Run the init script in a temporary empty directory.
+3. Confirm the generated structure matches the default output.
+4. Confirm no legacy `.foundation/`, `SUGGESTIONS.md`, or `CHECKS.md` is generated.
+5. Confirm conflict protection still stops on existing `AGENTS.md`, `README.md`, `docs/foundation/`, or legacy `.foundation/`.
 
-- `AGENTS.md` 已指向 `.foundation/README.md` 和 `.foundation/STATE.md`。
-- `.foundation/` 中 5 个文件均已生成。
-- 6 个生成物符合职责契约，按信息性质路由，未出现明显重复承载。
-- `PRINCIPLES.md` 区分裁决清晰的长期约束和未裁决治理建议。
-- `AGENTS.md` 和 `PRINCIPLES.md` 保留核心行为底线：不确定就问、没要求的不写、只改被要求的部分、先明确可验证完成标准、不强行产出。
-- `STATE.md` 顶部包含极短项目简述，没有生成详细项目计划或历史流水。
-- `LOG.md` 没有新增错误记录语义或错误专用字段。
-- `SUGGESTIONS.md` 是未裁决治理提案队列和防复发候选队列。
-- 扩展文档、共享语言、重要决策、接续和长期记忆规则已吸收到现有治理体系中，未新增默认目录。
-- 若存在冲突，未覆盖任何已有文件。
+When the change is substantial, use independent subagents for review or forward-testing if available. Review P0/P1 first; do not keep iterating on low-priority polish if the core behavior is sound.
+
+## Completion
+
+Finish with a concise status:
+
+- what changed
+- what was verified
+- any limitation or user decision still pending
+
+Do not generate PRD, Specs, project plans, task breakdowns, architecture designs, or QA matrices as part of foundation initialization.

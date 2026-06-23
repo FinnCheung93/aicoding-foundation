@@ -2,62 +2,48 @@
 
 ## Agentic Foundation
 
-在项目开工前，把协作原则、状态记录和治理结构先立起来。  
-适合用作 agent 参与项目的开工前治理 Skill，也可检查和增量同步已有治理地基。
+为 agent 参与的项目建立轻量文档地图和治理地基。  
+默认生成 `AGENTS.md`、根 `README.md`、`docs/README.md` 和 `docs/foundation/`。
 
-<sub>Governance · Principles · State · Continuation</sub>
+<sub>Project Map · Principles · State · Log · Optional Modules</sub>
 
 <br>
 
-<p><kbd>Codex Skill</kbd> <kbd>Version v1.9.1</kbd> <kbd>Language 中文</kbd> <kbd>Mode Governance</kbd></p>
+<p><kbd>Codex Skill</kbd> <kbd>Version v2.0.0</kbd> <kbd>Language 中文</kbd> <kbd>Mode Foundation</kbd></p>
 
 </div>
 
 ```text
-Agentic Foundation 用于初始化或维护项目治理文件结构。
-它会建立原则、状态、日志和未裁决提案队列，让后续 agent 工作有稳定上下文和自进化入口。
+Agentic Foundation 用于初始化、检查、增量同步或扩展项目地基。
+它不写 PRD、Specs、计划或架构；它负责入口、地图、路由、当前接手快照和重要历史账本。
 ```
 
-## ✨ 它能帮你做什么
+## 它能帮你做什么
 
-- 建立项目开工前的协作规则和工作边界
-- 记录项目原则、当前状态、重要历史和未裁决治理提案
-- 给 agent 参与的项目提供长期可读的上下文
-- 让治理文件在工作中持续触发记录、复盘和提案
-- 检查已有治理地基版本，并在授权后做增量同步
+- 建立 agent 开工入口和项目文档地图
+- 记录长期原则、当前状态和重要历史
+- 把 ADR、archive、hooks、subagent workflow 等作为按需追加模块管理
+- 检查已有 `.foundation/`、`docs/foundation/` 或旧 `SUGGESTIONS.md` / `CHECKS.md`，在授权后增量同步
+- 保留用户内容、项目特有规则和历史记录，不整文件覆盖
 
-## 🧭 适用场景
-
-- 新项目刚创建，还没有治理结构
-- 准备让 AI agent 参与项目工作
-- 希望项目状态、原则和建议有稳定记录位置
-- 多个 AI Agent 或多人协作时，需要一个共同参照
-- 想减少反复解释背景和上下文丢失
-- 已有 `.foundation/`，需要检查版本、同步能力或修复治理漂移
-
-## 🧩 工作方式
-
-这个 Skill 会把项目初始化为轻量治理结构，或在已有地基上做增量检查和同步；它不替你写 PRD、技术方案或实现计划。
-
-- 先确认目标项目目录
-- 新项目无冲突时创建 `AGENTS.md` 与 `.foundation/`
-- 已有地基时先检查版本和差异，再给出增量同步建议
-- 保留人类确认、项目特有内容和历史记录，不替代决策
-
-## 🚦 边界
-
-- 不负责写 PRD、Spec、架构设计或实现计划
-- 不在用户只想讨论时直接写文件
-- 不整文件覆盖已有治理内容；旧项目同步只做增量修订
-- 不默认提供 QA、测试矩阵、发布检查或验收 checklist
-- 不把项目治理变成沉重流程
-
-## 📦 使用方式
-
-把本目录作为 Codex skill 安装或放入你的 skills 目录中，由 Codex 在项目初始化任务中自动触发。
+## 默认结构
 
 ```text
-SKILL.md
+AGENTS.md
+README.md
+docs/
+  README.md
+  foundation/
+    README.md
+    PRINCIPLES.md
+    STATE.md
+    LOG.md
 ```
+
+不默认创建 `SUGGESTIONS.md`、`CHECKS.md`、ADR、归档、review、hooks、QA 或 TDD 目录。
+
+## 使用方式
+
+把本目录作为 Codex skill 安装或放入你的 skills 目录中，由 Codex 在项目初始化、同步或追加地基模块时触发。
 
 <sub>未提供开源许可证，默认保留所有权利。</sub>
